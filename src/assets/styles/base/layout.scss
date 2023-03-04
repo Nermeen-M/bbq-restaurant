@@ -1,0 +1,13 @@
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Kalam&display=swap");
+
+html {
+  font-family: "Kalam", cursive;
+  font-size: 16px;
+}
+
+@media (min-width: $media-desktop) {
+  html {
+    font-size: 18px;
+  }
+}
