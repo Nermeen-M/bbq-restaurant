@@ -1,7 +1,8 @@
 import useInput from "../scripts/useInput";
 import { validateNotEmpty } from "../scripts/validateInputs";
+import { createDocument } from "../scripts/firebase/fireStore";
 
-export default function AddCategoryForm() {
+export default function AddCategoryForm({ collectionName }) {
   const {
     value: titleValue,
     valueIsValid: titleIsValid,
@@ -20,16 +21,36 @@ export default function AddCategoryForm() {
     reset: descriptionReset,
   } = useInput(validateNotEmpty);
 
+  const {
+    value: imageValue,
+    valueIsValid: imageIsValid,
+    hasError: imageHasError,
+    valueChangeHandler: imageChangeHandler,
+    inputBlurHandler: imageBlurHandler,
+    reset: imageReset,
+  } = useInput(validateNotEmpty);
+
   let formIsValid = false;
 
-  if (titleIsValid && descriptionIsValid) {
+  if (titleIsValid && descriptionIsValid && imageIsValid) {
     formIsValid = true;
   }
 
-  function submitHandler(event) {
+  async function submitHandler(event) {
+    const data = {
+      title: titleValue,
+      description: descriptionValue,
+      imageURL: imageValue,
+    };
+
     event.preventDefault();
+
+    const documentId = await createDocument(collectionName, data);
+    console.log(documentId);
+
     titleReset();
     descriptionReset();
+    imageReset();
   }
 
   return (
@@ -60,6 +81,18 @@ export default function AddCategoryForm() {
         {descriptionHasError && (
           <p className="error">Please enter a valid description.</p>
         )}
+      </div>
+      <div className="form-field">
+        <label htmlFor="image">Image URL</label>
+        <input
+          id="image"
+          type="text"
+          value={imageValue}
+          onChange={imageChangeHandler}
+          onBlur={imageBlurHandler}
+          placeholder="image"
+        />
+        {imageHasError && <p className="error">Please enter a valid image.</p>}
       </div>
       <div className="actions">
         <button
