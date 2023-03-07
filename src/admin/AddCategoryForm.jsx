@@ -2,7 +2,11 @@ import useInput from "../scripts/useInput";
 import { validateNotEmpty } from "../scripts/validateInputs";
 import { createDocument } from "../scripts/firebase/fireStore";
 
+import { useCategories } from "../state/CategoriesContext";
+
 export default function AddCategoryForm({ collectionName }) {
+  const { dispatch } = useCategories();
+
   const {
     value: titleValue,
     valueIsValid: titleIsValid,
@@ -46,7 +50,7 @@ export default function AddCategoryForm({ collectionName }) {
     event.preventDefault();
 
     const documentId = await createDocument(collectionName, data);
-    console.log(documentId);
+    dispatch({ type: "create", payload: { id: documentId, ...data } });
 
     titleReset();
     descriptionReset();

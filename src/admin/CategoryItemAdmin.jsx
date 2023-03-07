@@ -1,4 +1,4 @@
-export default function CategoryItemAdmin({ item }) {
+export default function CategoryItemAdmin({ item, collectionName }) {
   const { title, imageURL } = item;
   return (
     <div>

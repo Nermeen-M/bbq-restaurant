@@ -1,9 +1,17 @@
 import AddCategoryForm from "./AddCategoryForm";
 import CategoryItemAdmin from "./CategoryItemAdmin";
 
-export default function ManageCategories({ data, collectionName }) {
-  const categoriesList = data.map((item) => (
-    <CategoryItemAdmin key={item.id} item={item} />
+import { useCategories } from "../state/CategoriesContext";
+
+export default function ManageCategories({ collectionName }) {
+  const { categories } = useCategories();
+
+  const categoriesList = categories.map((item) => (
+    <CategoryItemAdmin
+      key={item.id}
+      item={item}
+      collectionName={collectionName}
+    />
   ));
 
   return (
