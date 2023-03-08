@@ -7,18 +7,22 @@ export default function useInput(validateValue) {
   const valueIsValid = validateValue(value);
   const hasError = !valueIsValid && isTouched;
 
-  const valueChangeHandler = (event) => {
+  function valueChangeHandler(event) {
     setValue(event.target.value);
-  };
+  }
 
-  const inputBlurHandler = () => {
+  function inputBlurHandler() {
     setIsTouched(true);
-  };
+  }
 
-  const reset = () => {
+  function reset() {
     setValue("");
     setIsTouched(false);
-  };
+  }
+
+  function fill(newValue) {
+    setValue(newValue);
+  }
 
   return {
     value,
@@ -27,5 +31,6 @@ export default function useInput(validateValue) {
     valueChangeHandler,
     inputBlurHandler,
     reset,
+    fill,
   };
 }
