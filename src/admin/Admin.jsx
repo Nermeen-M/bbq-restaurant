@@ -1,9 +1,11 @@
 import ManageCategories from "./ManageCategories";
 
-export default function Admin({ collectionName }) {
+export default function Admin({ setModal }) {
+  const collectionName = "categories";
+
   return (
     <div>
-      <ManageCategories collectionName={collectionName} />
+      <ManageCategories collectionName={collectionName} setModal={setModal} />
     </div>
   );
 }

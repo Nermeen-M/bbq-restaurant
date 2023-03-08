@@ -20,8 +20,8 @@ export default function useInput(validateValue) {
     setIsTouched(false);
   }
 
-  function fill(newValue) {
-    setValue(newValue);
+  function fill(initialValue) {
+    setValue(initialValue);
   }
 
   return {

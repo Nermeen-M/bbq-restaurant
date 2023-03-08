@@ -1,12 +1,17 @@
+import { useEffect } from "react";
 import useInput from "../scripts/useInput";
 import { validateNotEmpty } from "../scripts/validateInputs";
-import { createDocument } from "../scripts/firebase/fireStore";
+import { createDocument, updateDocument } from "../scripts/firebase/fireStore";
 
 import { useCategories } from "../state/CategoriesContext";
-import CategoryItemAdmin from "./CategoryItemAdmin";
 
-export default function AddCategoryForm({ collectionName }) {
-  const { categories, dispatch } = useCategories();
+export default function AddUpdateCategoryForm({
+  collectionName,
+  formStatus,
+  setModal,
+  item,
+}) {
+  const { dispatch } = useCategories();
 
   const {
     value: titleValue,
@@ -38,14 +43,13 @@ export default function AddCategoryForm({ collectionName }) {
     fill: imageFill,
   } = useInput(validateNotEmpty);
 
-  const categoriesList = categories.map((item) => (
-    <CategoryItemAdmin
-      key={item.id}
-      item={item}
-      collectionName={collectionName}
-      fillInputs={fillInputs}
-    />
-  ));
+  useEffect(() => {
+    if (formStatus === "edit") {
+      titleFill(item.title);
+      descriptionFill(item.description);
+      imageFill(item.imageURL);
+    }
+  }, []);
 
   let formIsValid = false;
 
@@ -62,24 +66,35 @@ export default function AddCategoryForm({ collectionName }) {
 
     event.preventDefault();
 
-    const documentId = await createDocument(collectionName, data);
-    dispatch({ type: "create", payload: { id: documentId, ...data } });
+    if (formStatus === "add") {
+      const documentId = await createDocument(collectionName, data);
+      dispatch({ type: "create", payload: { id: documentId, ...data } });
+    } else if (formStatus === "edit") {
+      const updatedItem = {
+        ...item,
+        title: titleValue,
+        description: descriptionValue,
+        imageURL: imageValue,
+      };
+      // console.log(data);
+      // console.log(updatedItem);
+      await updateDocument(collectionName, updatedItem);
+      dispatch({ type: "update", payload: updatedItem });
+    }
 
     titleReset();
     descriptionReset();
     imageReset();
-  }
 
-  function fillInputs(item) {
-    titleFill(item.title);
-    descriptionFill(item.description);
-    imageFill(item.imageURL);
+    setModal(null);
   }
 
   return (
     <div>
       <form className="form" onSubmit={submitHandler}>
-        <h2>Create new category</h2>
+        {formStatus == "add" && <h2>Create new category</h2>}
+        {formStatus == "edit" && <h2>Edit category</h2>}
+
         <div className="form-field">
           <label htmlFor="title">Title</label>
           <input
@@ -128,11 +143,11 @@ export default function AddCategoryForm({ collectionName }) {
             type="submit"
             disabled={!formIsValid}
           >
-            Submit
+            {formStatus == "add" ? "Add" : "Save"}
           </button>
+          <button onClick={() => setModal(null)}>Cancel</button>
         </div>
       </form>
-      <div>{categoriesList}</div>
     </div>
   );
 }

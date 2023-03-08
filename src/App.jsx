@@ -6,11 +6,17 @@ import { useCategories } from "./state/CategoriesContext";
 
 import Home from "./pages/Home";
 import Admin from "./admin/Admin";
+import Modal from "./components/shared/Modal";
+
+import AddCategoryForm from "./admin/AddUpdateCategoryForm";
+
+import "./assets/styles/style.scss";
 
 export default function App() {
   const { dispatch } = useCategories();
 
   const [status, setStatus] = useState("loading");
+  const [modal, setModal] = useState(null);
   // const [loadedData, setLoadedData] = useState();
 
   const collectionName = "categories";
@@ -51,13 +57,19 @@ export default function App() {
             <Route path="/contact" element={<p>Contact</p>} />
             <Route
               path="/admin"
-              element={<Admin collectionName={collectionName} />}
+              element={<Admin setModal={setModal} />}
               exact
             />
+            {/* <Route
+              path="/admin/add-update-category"
+              element={<AddCategoryForm collectionName={collectionName} />}
+            /> */}
           </Routes>
         )}
         {status === "error" && <p>Error</p>}
       </div>
+
+      <Modal modalState={[modal, setModal]} />
     </div>
   );
 }
