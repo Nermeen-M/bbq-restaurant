@@ -16,7 +16,7 @@ export default function Admin({ setModal }) {
       {isCategoryActive && (
         <ManageCategories collectionName={collectionName} setModal={setModal} />
       )}
-      {!isCategoryActive && <ManageProducts />}
+      {!isCategoryActive && <ManageProducts setModal={setModal} />}
     </div>
   );
 }

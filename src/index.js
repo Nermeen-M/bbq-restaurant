@@ -4,14 +4,17 @@ import { BrowserRouter } from "react-router-dom";
 
 import App from "./App";
 import { CategoriesProvider } from "./state/CategoriesContext";
+import { ProductsProvider } from "./state/ProductsContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <CategoriesProvider>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <ProductsProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ProductsProvider>
     </CategoriesProvider>
   </React.StrictMode>
 );

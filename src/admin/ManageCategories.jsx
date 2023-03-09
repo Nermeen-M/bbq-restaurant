@@ -1,6 +1,3 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-
 import AddUpdateCategoryForm from "./AddUpdateCategoryForm";
 import CategoryItemAdmin from "./CategoryItemAdmin";
 
@@ -9,6 +6,7 @@ import { useCategories } from "../state/CategoriesContext";
 export default function ManageCategories({ collectionName, setModal }) {
   const { categories } = useCategories();
 
+  //   console.log(categories);
   const categoriesList = categories.map((item) => (
     <CategoryItemAdmin
       key={item.id}
@@ -18,7 +16,7 @@ export default function ManageCategories({ collectionName, setModal }) {
     />
   ));
 
-  function addCategoryhandler() {
+  function addCategoryHandler() {
     setModal(
       <AddUpdateCategoryForm
         collectionName={collectionName}
@@ -30,7 +28,8 @@ export default function ManageCategories({ collectionName, setModal }) {
 
   return (
     <div>
-      <button onClick={addCategoryhandler}>Add category</button>
+      <h2>Manage Categories</h2>
+      <button onClick={addCategoryHandler}>Add category</button>
       <div>{categoriesList}</div>
     </div>
   );
