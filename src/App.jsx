@@ -5,7 +5,7 @@ import { readDocuments } from "./scripts/firebase/fireStore";
 import { useCategories } from "./state/CategoriesContext";
 
 import Home from "./pages/Home";
-import Admin from "./admin/Admin";
+import Admin from "./pages/Admin";
 import Modal from "./components/shared/Modal";
 
 import AddCategoryForm from "./admin/AddUpdateCategoryForm";
