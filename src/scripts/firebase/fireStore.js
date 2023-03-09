@@ -1,4 +1,4 @@
-import { doc, collection, getDoc } from "firebase/firestore";
+import { doc, collection, getDoc, setDoc } from "firebase/firestore";
 import { addDoc, getDocs, updateDoc, deleteDoc } from "firebase/firestore";
 
 import { database } from "./firebaseSetup";
@@ -9,6 +9,15 @@ export async function createDocument(collectionName, data) {
   const result = document.id;
 
   return result;
+}
+
+export async function createDocumentWithManualId(collectionName, id, data) {
+  const reference = collection(database, collectionName);
+  const document = doc(reference, id);
+
+  await setDoc(document, data);
+
+  return `created document with manual id ${id}`;
 }
 
 export async function readDocument(collectionName, documentId) {

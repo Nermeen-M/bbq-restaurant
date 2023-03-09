@@ -5,7 +5,7 @@ import { useCategories } from "../state/CategoriesContext";
 export default function CategoryItemAdmin({ item, collectionName, setModal }) {
   const { dispatch } = useCategories();
 
-  const { id, title, imageURL } = item;
+  const { id, title, image } = item;
 
   async function editHandler() {
     setModal(
@@ -31,7 +31,7 @@ export default function CategoryItemAdmin({ item, collectionName, setModal }) {
   return (
     <div>
       <div>
-        <img width="100" src={imageURL} />
+        <img width="100" src={image} />
         <h3>{title}</h3>
         <button onClick={editHandler}>Edit</button>
         <button onClick={() => deleteHandler(id)}>Delete</button>
