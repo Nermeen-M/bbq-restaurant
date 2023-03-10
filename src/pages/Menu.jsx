@@ -1,13 +1,9 @@
-import { useCategories } from "../state/CategoriesContext";
-
-import CategoryItem from "../components/CategoryItem";
+import CategoriesList from "../components/CategoriesList";
 
 export default function Menu() {
-  const { categories } = useCategories();
-
-  const categoriesList = categories.map((item) => (
-    <CategoryItem key={item.id} item={item} />
-  ));
-
-  return <div id="menu">{categoriesList}</div>;
+  return (
+    <div id="menu">
+      <CategoriesList />
+    </div>
+  );
 }
