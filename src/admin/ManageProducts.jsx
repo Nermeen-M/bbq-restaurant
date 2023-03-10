@@ -64,12 +64,9 @@ export default function ManageProducts({ setModal }) {
   }
 
   return (
-    <div>
-      {status === "loading" && <p>Loading...</p>}
-      {status === "error" && <p>Error</p>}
-      {status === "ready" && productsList}
-      <h2>Manage products</h2>
-      <label>
+    <div className="admin-board">
+      <h1>Manage products</h1>
+      <label className="select">
         Select a category
         <select
           value={selectedOption}
@@ -79,7 +76,13 @@ export default function ManageProducts({ setModal }) {
         </select>
       </label>
 
-      <button onClick={addProductHandler}>Add product</button>
+      <button onClick={addProductHandler} className="primary-button">
+        Add product
+      </button>
+
+      {status === "loading" && <p>Loading...</p>}
+      {status === "error" && <p>Error</p>}
+      {status === "ready" && <div className="listing">{productsList}</div>}
     </div>
   );
 }

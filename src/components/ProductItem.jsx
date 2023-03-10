@@ -9,10 +9,10 @@ export default function ProductItem({ item }) {
       className="product-card"
       onClick={() => navigate(`/menu/${categoryName}/${item.id}`)}
     >
-      <div>
+      <div className="text">
         <h3>{item.title}</h3>
         <p>{item.brief}</p>
-        <span>{item.price}</span>
+        <span>Price: {item.price} :-</span>
       </div>
       <img width="100" src={item.image} alt={item.title} />
     </div>

@@ -1,0 +1,59 @@
+#category {
+  .banner {
+    .text {
+      width: 300px;
+      height: 230px;
+      background-color: $color-light-rose;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      h1 {
+        color: $color-red;
+      }
+      p {
+        color: $color-dark-gray;
+      }
+    }
+  }
+
+  .products-list {
+    background-color: $color-maroon;
+
+    .product-card {
+      display: flex;
+      padding: $space-small;
+      background-color: $color-light-rose;
+      box-shadow: $box-shadow;
+      gap: $space-small;
+      margin-bottom: $space-medium;
+      cursor: pointer;
+
+      .text {
+        flex-grow: 1;
+        position: relative;
+
+        h3 {
+          color: $color-red;
+        }
+
+        p {
+          color: $color-dark-gray;
+        }
+
+        span {
+          color: $color-dark-gray;
+          font-weight: bold;
+          position: absolute;
+          bottom: 0;
+        }
+      }
+      img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+      }
+    }
+  }
+}

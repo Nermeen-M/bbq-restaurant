@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+
 import AddUpdateProductForm from "./AddUpdateProductForm";
 import { deleteDocument } from "../scripts/firebase/fireStore";
 import { useProducts } from "../state/ProductsContext";
@@ -31,13 +34,15 @@ export default function ProductItemAdmin({ item, categoryId, setModal }) {
   }
 
   return (
-    <div>
-      <div>
-        <img width="100" src={image} />
-        <h3>{title}</h3>
-        <button onClick={editHandler}>Edit</button>
-        <button onClick={() => deleteHandler(id)}>Delete</button>
-      </div>
+    <div className="listing-item">
+      <img width="100" src={image} />
+      <h3>{title}</h3>
+      <button onClick={editHandler}>
+        <FontAwesomeIcon icon={solid("pen-to-square")} />
+      </button>
+      <button onClick={() => deleteHandler(id)}>
+        <FontAwesomeIcon icon={solid("trash-can")} />
+      </button>
     </div>
   );
 }

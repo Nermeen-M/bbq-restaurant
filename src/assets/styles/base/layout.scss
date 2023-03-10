@@ -4,23 +4,13 @@
 html {
   font-family: "Kalam", cursive;
   font-size: 16px;
-}
 
-.primary-button {
-  min-width: 150px;
-  padding: $space-medium;
-  height: 50px;
-  font-size: 16px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  background-color: $color-red;
-  color: $color-white;
-  align-items: center;
-  margin: $space-x-large auto;
-  transition: $transition;
+  .container {
+    padding: $space-medium;
+  }
 
-  &:hover {
+  main {
+    min-height: calc(100vh - 270px);
     background-color: $color-maroon;
   }
 }
@@ -28,5 +18,10 @@ html {
 @media (min-width: $media-desktop) {
   html {
     font-size: 18px;
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+    }
   }
 }

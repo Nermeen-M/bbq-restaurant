@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
+
 import { validateNotEmpty } from "../scripts/validateInputs";
 import {
   createDocumentWithManualId,
@@ -9,6 +12,8 @@ import {
 import { uploadFile, downloadFile } from "../scripts/firebase/cloudStorage";
 
 import { useProducts } from "../state/ProductsContext";
+
+import placeholder from "../assets/images/placeholder.jpg";
 
 export default function AddUpdateProductForm({
   formStatus,
@@ -115,9 +120,9 @@ export default function AddUpdateProductForm({
 
   return (
     <div>
-      <form className="form" onSubmit={submitHandler}>
-        {formStatus == "add" && <h2>Create new product</h2>}
-        {formStatus == "edit" && <h2>Edit product</h2>}
+      <form className="form admin-form" onSubmit={submitHandler}>
+        {formStatus == "add" && <h3>Create new product</h3>}
+        {formStatus == "edit" && <h3>Edit product</h3>}
 
         <div className="form-field">
           <label htmlFor="title">Title</label>
@@ -135,7 +140,7 @@ export default function AddUpdateProductForm({
           )} */}
         </div>
         <div className="form-field">
-          <label htmlFor="brief">Title</label>
+          <label htmlFor="brief">Brief</label>
           <input
             id="brief"
             type="text"
@@ -174,33 +179,32 @@ export default function AddUpdateProductForm({
           />
         </div>
         <div className="form-field">
-          <label htmlFor="image">Image</label>
-          {isUploading && <span>Uploading ...</span>}
+          <label htmlFor="ingredients">Recipe</label>
           <input
-            id="image"
-            type="file"
-            accept="image/png, image/jpeg"
-            // value={image}
-            // files={image}
-            onChange={imageChangeHandler}
-            // onBlur={imageBlurHandler}
-          />
-          {/* {formStatus === "edit" && <img width="50" src={item.image} />} */}
-          <img width="50" src={image} />
-          {/* {imageHasError && (
-            <p className="error">Please enter a valid image.</p>
-          )} */}
-        </div>
-        <div className="form-field">
-          <label htmlFor="ingredients">Ingredients</label>
-          <textarea
             id="ingredients"
             type="text"
             value={ingredients}
             onChange={(event) => setIngredients(event.target.value)}
             // onBlur={titleBlurHandler}
-            placeholder="Ingredients"
+            placeholder="Recipe"
             required
+          />
+        </div>
+        <div className="form-field upload">
+          <label htmlFor="image">
+            <img src={formStatus == "add" && !image ? placeholder : image} />
+          </label>
+          {isUploading && (
+            <div className="spinner">
+              <FontAwesomeIcon icon={solid("spinner")} spin />
+            </div>
+          )}
+          <input
+            id="image"
+            type="file"
+            accept="image/png, image/jpeg"
+            onChange={imageChangeHandler}
+            className="visually-hidden"
           />
         </div>
         <div className="actions">

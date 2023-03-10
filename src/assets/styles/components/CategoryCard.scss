@@ -1,0 +1,39 @@
+.categories-list {
+  background-color: $color-maroon;
+  padding-top: $space-small;
+
+  .category-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: $space-x-large;
+
+    img {
+      width: 311px;
+      height: 200px;
+      box-shadow: $box-shadow;
+    }
+    .details {
+      background-color: $color-light-rose;
+      box-shadow: $box-shadow;
+      width: 280px;
+      margin-top: -35px;
+
+      .text {
+        padding: $space-medium;
+        text-align: center;
+
+        h2 {
+          color: $color-red;
+        }
+        p {
+          color: $color-dark-gray;
+        }
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+#contact {
+  .main-image {
+    width: 235px;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto $space-x-large auto;
+  }
+
+  .content {
+    background-color: $color-light-rose;
+    padding: $space-medium;
+
+    h3 {
+      color: $color-red;
+      margin-bottom: $space-medium;
+    }
+
+    .timing {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: $space-medium;
+    }
+
+    .map {
+      margin-top: $space-large;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  #contact {
+    .main-image {
+      height: 400px;
+      width: auto;
+    }
+  }
+}

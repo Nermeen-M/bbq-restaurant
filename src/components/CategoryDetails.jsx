@@ -10,10 +10,10 @@ export default function CategoryDetails() {
   );
 
   return (
-    <div className="category-details">
-      <img width="100" src={category.image} />
-      <div className="container">
-        <h2>{category.title}</h2>
+    <div className="banner">
+      {/* <img width="100" src={category.image} /> */}
+      <div className="text">
+        <h1>{category.title}</h1>
         <p>{category.description}</p>
       </div>
     </div>

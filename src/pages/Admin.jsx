@@ -7,10 +7,20 @@ export default function Admin({ setModal }) {
   const collectionName = "categories";
 
   return (
-    <div>
-      <div>
-        <button onClick={() => setIsCategoryActive(true)}>Categories</button>
-        <button onClick={() => setIsCategoryActive(false)}>Products</button>
+    <div id="admin">
+      <div className="admin-nav">
+        <button
+          onClick={() => setIsCategoryActive(true)}
+          className={isCategoryActive && "active"}
+        >
+          Categories
+        </button>
+        <button
+          onClick={() => setIsCategoryActive(false)}
+          className={!isCategoryActive && "active"}
+        >
+          Products
+        </button>
       </div>
 
       {isCategoryActive && (

@@ -41,7 +41,7 @@ export default function Product() {
 
   // const product = products.find((item) => item.id === productId);
   return (
-    <div id="product">
+    <main id="product">
       <div className="banner">
         <img
           width="100"
@@ -49,21 +49,23 @@ export default function Product() {
           alt={currentProduct.title}
         />
       </div>
-      <div className="content">
-        <h1>{currentProduct.title}</h1>
-        <span>{currentProduct.price}</span>
-        <p>{currentProduct.description}</p>
+      <div className="container">
+        <div className="content">
+          <h1>{currentProduct.title}</h1>
+          <span className="bold">{currentProduct.price} :-</span>
+          <p className="description">{currentProduct.description}</p>
 
-        <h3>Ingredients</h3>
-        <div>{currentProduct.ingredients}</div>
+          <h3>Recipe</h3>
+          <div>{currentProduct.ingredients}</div>
 
-        <button
-          className="primary-button"
-          onClick={() => navigate(`/menu/${categoryName}`)}
-        >
-          Back
-        </button>
+          <button
+            className="primary-button"
+            onClick={() => navigate(`/menu/${categoryName}`)}
+          >
+            Back
+          </button>
+        </div>
       </div>
-    </div>
+    </main>
   );
 }

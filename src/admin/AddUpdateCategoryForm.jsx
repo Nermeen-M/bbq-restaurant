@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 
-import useInput from "../scripts/useInput";
 import { validateNotEmpty } from "../scripts/validateInputs";
 import {
   createDocumentWithManualId,
   updateDocument,
 } from "../scripts/firebase/fireStore";
 import { uploadFile, downloadFile } from "../scripts/firebase/cloudStorage";
-
 import { useCategories } from "../state/CategoriesContext";
+import placeholder from "../assets/images/placeholder.jpg";
 
 export default function AddUpdateCategoryForm({
   collectionName,
@@ -19,35 +20,6 @@ export default function AddUpdateCategoryForm({
 }) {
   const { dispatch } = useCategories();
 
-  // const {
-  //   value: titleValue,
-  //   valueIsValid: titleIsValid,
-  //   hasError: titleHasError,
-  //   valueChangeHandler: titleChangeHandler,
-  //   inputBlurHandler: titleBlurHandler,
-  //   reset: titleReset,
-  //   fill: titleFill,
-  // } = useInput(validateNotEmpty);
-
-  // const {
-  //   value: descriptionValue,
-  //   valueIsValid: descriptionIsValid,
-  //   hasError: descriptionHasError,
-  //   valueChangeHandler: descriptionChangeHandler,
-  //   inputBlurHandler: descriptionBlurHandler,
-  //   reset: descriptionReset,
-  //   fill: descriptionFill,
-  // } = useInput(validateNotEmpty);
-
-  // const {
-  //   value: imageValue,
-  //   valueIsValid: imageIsValid,
-  //   hasError: imageHasError,
-  //   valueChangeHandler: imageChangeHandler,
-  //   inputBlurHandler: imageBlurHandler,
-  //   reset: imageReset,
-  //   fill: imageFill,
-  // } = useInput(validateNotEmpty);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
@@ -78,22 +50,18 @@ export default function AddUpdateCategoryForm({
     const file = event.target.files[0];
     const filePath = `categories/${manualId}_${file.name}`;
 
-    // setImage({ file: file, filePath: filePath });
     await uploadFile(file, filePath);
     setImage(await downloadFile(filePath));
-    // console.log(image.toString());
     setIsUploading(false);
   }
 
   async function submitHandler(event) {
-    // console.log(image);
+    event.preventDefault();
     const data = {
       title: title,
       description: description,
       image: image,
     };
-
-    event.preventDefault();
 
     if (formStatus === "add") {
       await createDocumentWithManualId(collectionName, manualId, data);
@@ -105,27 +73,21 @@ export default function AddUpdateCategoryForm({
         description: description,
         image: image,
       };
-      // console.log(data);
-      // console.log(updatedItem);
       await updateDocument(collectionName, updatedItem);
       dispatch({ type: "update", payload: updatedItem });
     }
 
-    // titleReset();
-    // descriptionReset();
-    // imageReset();
     setTitle("");
     setDescription("");
     setImage("");
-
     setModal(null);
   }
 
   return (
     <div>
-      <form className="form" onSubmit={submitHandler}>
-        {formStatus == "add" && <h2>Create new category</h2>}
-        {formStatus == "edit" && <h2>Edit category</h2>}
+      <form className="form admin-form" onSubmit={submitHandler}>
+        {formStatus == "add" && <h3>Create new category</h3>}
+        {formStatus == "edit" && <h3>Edit category</h3>}
 
         <div className="form-field">
           <label htmlFor="title">Title</label>
@@ -134,13 +96,9 @@ export default function AddUpdateCategoryForm({
             type="text"
             value={title}
             onChange={(event) => setTitle(event.target.value)}
-            // onBlur={titleBlurHandler}
             placeholder="Title"
             required
           />
-          {/* {titleHasError && (
-            <p className="error">Please enter a valid title.</p>
-          )} */}
         </div>
         <div className="form-field">
           <label htmlFor="description">Description</label>
@@ -149,31 +107,26 @@ export default function AddUpdateCategoryForm({
             type="text"
             value={description}
             onChange={(event) => setDescription(event.target.value)}
-            // onBlur={descriptionBlurHandler}
             placeholder="Description"
             required
           />
-          {/* {descriptionHasError && (
-            <p className="error">Please enter a valid description.</p>
-          )} */}
         </div>
-        <div className="form-field">
-          <label htmlFor="image">Image</label>
-          {isUploading && <span>Uploading ...</span>}
+        <div className="form-field upload">
+          <label htmlFor="image">
+            <img src={formStatus == "add" && !image ? placeholder : image} />
+          </label>
+          {isUploading && (
+            <div className="spinner">
+              <FontAwesomeIcon icon={solid("spinner")} spin />
+            </div>
+          )}
           <input
             id="image"
             type="file"
             accept="image/png, image/jpeg"
-            // value={image}
-            // files={image}
             onChange={imageChangeHandler}
-            // onBlur={imageBlurHandler}
+            className="visually-hidden"
           />
-          {/* {formStatus === "edit" && <img width="50" src={item.image} />} */}
-          <img width="50" src={image} />
-          {/* {imageHasError && (
-            <p className="error">Please enter a valid image.</p>
-          )} */}
         </div>
         <div className="actions">
           <button

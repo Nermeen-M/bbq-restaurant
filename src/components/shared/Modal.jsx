@@ -10,12 +10,7 @@ export default function Modal({ modalState }) {
   return createPortal(
     <div id="modal">
       <div className="backdrop" onClick={() => setModal(null)}></div>
-      <div className="window animate-fade-in">
-        <button onClick={() => setModal(null)} className="modal-close-button">
-          X
-        </button>
-        {modal}
-      </div>
+      <div className="window animate-fade-in">{modal}</div>
     </div>,
     HTMLElement
   );

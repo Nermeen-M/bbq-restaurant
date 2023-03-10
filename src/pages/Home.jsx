@@ -21,7 +21,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <CategoriesList />
+      <section className="categories-list">
+        <CategoriesList />
+      </section>
     </main>
   );
 }

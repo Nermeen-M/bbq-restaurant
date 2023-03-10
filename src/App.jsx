@@ -3,7 +3,6 @@ import { Routes, Route } from "react-router-dom";
 
 import { readDocuments } from "./scripts/firebase/fireStore";
 import { useCategories } from "./state/CategoriesContext";
-
 import Header from "./components/shared/Header";
 import Home from "./pages/Home";
 import Menu from "./pages/Menu";
@@ -12,9 +11,9 @@ import Product from "./pages/Product";
 import Contact from "./pages/Contact";
 import Footer from "./components/shared/Footer";
 import Admin from "./pages/Admin";
+import LoadingScreen from "./components/shared/LoadingScreen";
+import NotFound from "./pages/NotFound";
 import Modal from "./components/shared/Modal";
-
-import AddCategoryForm from "./admin/AddUpdateCategoryForm";
 
 import "./assets/styles/style.scss";
 
@@ -49,7 +48,7 @@ export default function App() {
   return (
     <div className="App">
       <Header />
-      {status === "loading" && <p>Loading...</p>}
+      {status === "loading" && <LoadingScreen />}
       {status === "ready" && (
         <Routes>
           <Route path="/" element={<Home />} exact />
@@ -57,11 +56,8 @@ export default function App() {
           <Route path="/menu/:categoryName" element={<Category />} />
           <Route path="/menu/:categoryName/:productId" element={<Product />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/admin" element={<Admin setModal={setModal} />} exact />
-          {/* <Route
-              path="/admin/add-update-category"
-              element={<AddCategoryForm collectionName={collectionName} />}
-            /> */}
+          <Route path="/admin" element={<Admin setModal={setModal} />} />
+          <Route path="/*" element={<NotFound />} />
         </Routes>
       )}
       {status === "error" && <p>Error</p>}

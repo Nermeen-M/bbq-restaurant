@@ -27,10 +27,12 @@ export default function ManageCategories({ collectionName, setModal }) {
   }
 
   return (
-    <div>
-      <h2>Manage Categories</h2>
-      <button onClick={addCategoryHandler}>Add category</button>
-      <div>{categoriesList}</div>
+    <div className="admin-board">
+      <h1>Manage Categories</h1>
+      <button onClick={addCategoryHandler} className="primary-button">
+        Add category
+      </button>
+      <div className="listing">{categoriesList}</div>
     </div>
   );
 }

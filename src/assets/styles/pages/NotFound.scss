@@ -1,0 +1,22 @@
+#page-not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: $space-x-large;
+
+  svg {
+    font-size: 120px;
+    color: $color-white;
+  }
+
+  h1 {
+    color: $color-white;
+  }
+
+  button {
+    &:hover {
+      background-color: $color-dark-gray;
+    }
+  }
+}

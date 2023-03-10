@@ -3,10 +3,17 @@
 @import "./base/variables.scss";
 @import "./base/layout.scss";
 @import "./base/typography.scss";
+@import "./base/common.scss";
 @import "./base/animation.scss";
 
 /* Components */
 @import "./components/Modal.scss";
 @import "./components/Header.scss";
-@import "./pages/Home.scss";
+@import "./components/Hero.scss";
+@import "./components/CategoryCard.scss";
+@import "./pages/Category.scss";
+@import "./pages/Product.scss";
+@import "./pages/Contact.scss";
+@import "./pages/Admin.scss";
+@import "./pages/NotFound.scss";
 @import "./components/Footer.scss";

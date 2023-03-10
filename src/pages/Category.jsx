@@ -45,11 +45,15 @@ export default function Category() {
   ));
 
   return (
-    <div id="category">
+    <main id="category">
       <CategoryDetails />
       {status === "loading" && <p>Loading...</p>}
       {status === "error" && <p>Error</p>}
-      {status === "ready" && <div>{productsList}</div>}
-    </div>
+      {status === "ready" && (
+        <div className="products-list">
+          <div className="container">{productsList}</div>
+        </div>
+      )}
+    </main>
   );
 }

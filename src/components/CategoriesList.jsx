@@ -13,12 +13,12 @@ export default function CategoriesList() {
 
   const categoriesList = categories.map((item) => (
     <div key={item.id} className="category-card">
-      <div className="image">
-        <img width="100" src={item.image} />
-      </div>
+      <img width="100" src={item.image} />
       <div className="details">
-        <h2>{item.title}</h2>
-        <p>{item.description}</p>
+        <div className="text">
+          <h2>{item.title}</h2>
+          <p>{item.description}</p>
+        </div>
         <button
           className="primary-button"
           onClick={() => {
@@ -31,9 +31,5 @@ export default function CategoriesList() {
     </div>
   ));
 
-  return (
-    <div className="category-list">
-      <div className="container">{categoriesList}</div>
-    </div>
-  );
+  return <div className="container">{categoriesList}</div>;
 }
