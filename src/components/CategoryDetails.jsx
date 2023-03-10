@@ -11,7 +11,6 @@ export default function CategoryDetails() {
 
   return (
     <div className="banner">
-      {/* <img width="100" src={category.image} /> */}
       <div className="text">
         <h1>{category.title}</h1>
         <p>{category.description}</p>

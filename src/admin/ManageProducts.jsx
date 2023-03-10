@@ -2,18 +2,16 @@ import { useState, useEffect } from "react";
 
 import { useCategories } from "../state/CategoriesContext";
 import { useProducts } from "../state/ProductsContext";
-
 import { readDocuments } from "../scripts/firebase/fireStore";
-
 import AddUpdateProductForm from "./AddUpdateProductForm";
 import ProductItemAdmin from "./ProductItemAdmin";
+import LoadingScreen from "../components/shared/LoadingScreen";
 
 export default function ManageProducts({ setModal }) {
   const { categories } = useCategories();
   const { products, dispatch } = useProducts();
 
   const [status, setStatus] = useState("loading");
-
   const [selectedOption, setSelectedOption] = useState(categories[0].id);
 
   const selectOptions = categories.map((item) => (
@@ -39,11 +37,6 @@ export default function ManageProducts({ setModal }) {
     setStatus("error");
   }
 
-  //   function selectChangeHandler(event) {
-  //     setSelectedOption(event.target.value);
-  //     // loadData(event.target.value);
-  //   }
-
   const productsList = products.map((item) => (
     <ProductItemAdmin
       key={item.id}
@@ -52,7 +45,7 @@ export default function ManageProducts({ setModal }) {
       setModal={setModal}
     />
   ));
-  //   console.log(selectedOption);
+
   function addProductHandler() {
     setModal(
       <AddUpdateProductForm
@@ -80,7 +73,7 @@ export default function ManageProducts({ setModal }) {
         Add product
       </button>
 
-      {status === "loading" && <p>Loading...</p>}
+      {status === "loading" && <LoadingScreen />}
       {status === "error" && <p>Error</p>}
       {status === "ready" && <div className="listing">{productsList}</div>}
     </div>

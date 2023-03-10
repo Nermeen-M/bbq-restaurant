@@ -7,7 +7,6 @@ import { useProducts } from "../state/ProductsContext";
 
 export default function ProductItemAdmin({ item, categoryId, setModal }) {
   const { dispatch } = useProducts();
-
   const { id, title, image } = item;
 
   const collectionName = `categories/${categoryId}/products`;

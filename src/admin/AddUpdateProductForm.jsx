@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 
@@ -10,9 +9,7 @@ import {
   updateDocument,
 } from "../scripts/firebase/fireStore";
 import { uploadFile, downloadFile } from "../scripts/firebase/cloudStorage";
-
 import { useProducts } from "../state/ProductsContext";
-
 import placeholder from "../assets/images/placeholder.jpg";
 
 export default function AddUpdateProductForm({
@@ -21,8 +18,6 @@ export default function AddUpdateProductForm({
   item,
   categoryId,
 }) {
-  // console.log(categoryId);
-
   const { dispatch } = useProducts();
 
   const [title, setTitle] = useState("");
@@ -66,15 +61,12 @@ export default function AddUpdateProductForm({
     const file = event.target.files[0];
     const filePath = `products/${manualId}_${file.name}`;
 
-    // setImage({ file: file, filePath: filePath });
     await uploadFile(file, filePath);
     setImage(await downloadFile(filePath));
-    // console.log(image.toString());
     setIsUploading(false);
   }
 
   async function submitHandler(event) {
-    // console.log(image);
     const data = {
       title: title,
       brief: brief,
@@ -99,22 +91,16 @@ export default function AddUpdateProductForm({
         image: image,
         ingredients: ingredients,
       };
-      // console.log(data);
-      // console.log(updatedItem);
       await updateDocument(collectionName, updatedItem);
       dispatch({ type: "update", payload: updatedItem });
     }
 
-    // titleReset();
-    // descriptionReset();
-    // imageReset();
     setTitle("");
     setBrief("");
     setDescription("");
     setPrice("");
     setImage("");
     setIngredients("");
-
     setModal(null);
   }
 
@@ -131,13 +117,9 @@ export default function AddUpdateProductForm({
             type="text"
             value={title}
             onChange={(event) => setTitle(event.target.value)}
-            // onBlur={titleBlurHandler}
             placeholder="Title"
             required
           />
-          {/* {titleHasError && (
-            <p className="error">Please enter a valid title.</p>
-          )} */}
         </div>
         <div className="form-field">
           <label htmlFor="brief">Brief</label>
@@ -146,7 +128,6 @@ export default function AddUpdateProductForm({
             type="text"
             value={brief}
             onChange={(event) => setBrief(event.target.value)}
-            // onBlur={titleBlurHandler}
             placeholder="Brief"
             required
           />
@@ -158,13 +139,9 @@ export default function AddUpdateProductForm({
             type="text"
             value={description}
             onChange={(event) => setDescription(event.target.value)}
-            // onBlur={descriptionBlurHandler}
             placeholder="Description"
             required
           />
-          {/* {descriptionHasError && (
-            <p className="error">Please enter a valid description.</p>
-          )} */}
         </div>
         <div className="form-field">
           <label htmlFor="price">Price</label>
@@ -173,7 +150,6 @@ export default function AddUpdateProductForm({
             type="number"
             value={price}
             onChange={(event) => setPrice(event.target.value)}
-            // onBlur={titleBlurHandler}
             placeholder="Price"
             required
           />
@@ -185,7 +161,6 @@ export default function AddUpdateProductForm({
             type="text"
             value={ingredients}
             onChange={(event) => setIngredients(event.target.value)}
-            // onBlur={titleBlurHandler}
             placeholder="Recipe"
             required
           />

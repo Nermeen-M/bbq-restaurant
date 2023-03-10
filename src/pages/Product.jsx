@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useProducts } from "../state/ProductsContext";
 import { useCategories } from "../state/CategoriesContext";
 
@@ -9,7 +9,7 @@ export default function Product() {
   const { categoryName, productId } = useParams();
   const navigate = useNavigate();
   const { categories } = useCategories();
-  const { products, dispatch } = useProducts();
+  const { products } = useProducts();
 
   const [status, setStatus] = useState("loading");
   const [currentProduct, setCurrentProduct] = useState({});
@@ -29,7 +29,6 @@ export default function Product() {
     onSuccess(data);
   }
   function onSuccess(data) {
-    // dispatch({ type: "initializeArray", payload: data });
     setCurrentProduct(data);
     setStatus("ready");
   }
@@ -39,7 +38,6 @@ export default function Product() {
 
   console.log(products);
 
-  // const product = products.find((item) => item.id === productId);
   return (
     <main id="product">
       <div className="banner">

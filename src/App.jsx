@@ -22,8 +22,6 @@ export default function App() {
 
   const [status, setStatus] = useState("loading");
   const [modal, setModal] = useState(null);
-  // const [loadedData, setLoadedData] = useState();
-
   const collectionName = "categories";
 
   useEffect(() => {
@@ -36,7 +34,6 @@ export default function App() {
   }
 
   function onSuccess(data) {
-    // setLoadedData(data);
     dispatch({ type: "initializeArray", payload: data });
     setStatus("ready");
   }

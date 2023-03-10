@@ -1,12 +1,10 @@
 import AddUpdateCategoryForm from "./AddUpdateCategoryForm";
 import CategoryItemAdmin from "./CategoryItemAdmin";
-
 import { useCategories } from "../state/CategoriesContext";
 
 export default function ManageCategories({ collectionName, setModal }) {
   const { categories } = useCategories();
 
-  //   console.log(categories);
   const categoriesList = categories.map((item) => (
     <CategoryItemAdmin
       key={item.id}
