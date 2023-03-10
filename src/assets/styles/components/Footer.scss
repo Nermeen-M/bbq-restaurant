@@ -1,0 +1,15 @@
+footer {
+  background: $color-black;
+  color: $color-white;
+  padding: $space-x-large;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-medium;
+
+  .icons {
+    display: flex;
+    font-size: 25px;
+    gap: $space-x-large;
+  }
+}

@@ -10,6 +10,7 @@ import Menu from "./pages/Menu";
 import Category from "./pages/Category";
 import Product from "./pages/Product";
 import Contact from "./pages/Contact";
+import Footer from "./components/shared/Footer";
 import Admin from "./pages/Admin";
 import Modal from "./components/shared/Modal";
 
@@ -64,7 +65,7 @@ export default function App() {
         </Routes>
       )}
       {status === "error" && <p>Error</p>}
-
+      <Footer />
       <Modal modalState={[modal, setModal]} />
     </div>
   );
