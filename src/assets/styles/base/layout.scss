@@ -15,13 +15,17 @@ html {
   }
 }
 
+@media (min-width: $media-tablet) {
+  html {
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+  }
+}
+
 @media (min-width: $media-desktop) {
   html {
     font-size: 18px;
-
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-    }
   }
 }

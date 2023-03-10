@@ -12,7 +12,7 @@
 
     .text {
       text-align: center;
-      width: 311px;
+      // width: 311px;
       animation-delay: 0.5s;
       display: flex;
       flex-direction: column;
@@ -48,12 +48,12 @@
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media (min-width: $media-desktop) {
   .hero {
     height: calc(100vh - 120px);
+
     .text {
       text-align: center;
-      width: 500px;
     }
   }
 }

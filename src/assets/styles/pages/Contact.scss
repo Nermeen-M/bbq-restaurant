@@ -28,7 +28,7 @@
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media (min-width: $media-desktop) {
   #contact {
     .main-image {
       height: 400px;

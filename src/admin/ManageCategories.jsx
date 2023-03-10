@@ -25,7 +25,7 @@ export default function ManageCategories({ collectionName, setModal }) {
   }
 
   return (
-    <div className="admin-board">
+    <div className="admin-board container">
       <h1>Manage Categories</h1>
       <button onClick={addCategoryHandler} className="primary-button">
         Add category

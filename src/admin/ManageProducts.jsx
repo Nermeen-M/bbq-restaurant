@@ -57,7 +57,7 @@ export default function ManageProducts({ setModal }) {
   }
 
   return (
-    <div className="admin-board">
+    <div className="admin-board container">
       <h1>Manage products</h1>
       <label className="select">
         Select a category

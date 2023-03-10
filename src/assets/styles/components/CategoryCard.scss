@@ -2,6 +2,11 @@
   background-color: $color-maroon;
   padding-top: $space-small;
 
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
   .category-card {
     display: flex;
     flex-direction: column;
@@ -34,6 +39,17 @@
       button {
         width: 100%;
       }
+    }
+  }
+}
+
+@media (min-width: $media-tablet) {
+  .categories-list {
+    .container {
+      flex-direction: row;
+      justify-content: space-between;
+      gap: $space-x-large;
+      flex-wrap: wrap;
     }
   }
 }

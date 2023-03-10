@@ -57,3 +57,14 @@
     }
   }
 }
+
+@media (min-width: $media-desktop) {
+  #category {
+    .banner {
+      .text {
+        width: 600px;
+        height: 450px;
+      }
+    }
+  }
+}

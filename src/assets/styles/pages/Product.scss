@@ -29,3 +29,14 @@
     }
   }
 }
+
+@media (min-width: $media-desktop) {
+  #product {
+    .banner {
+      img {
+        width: 600px;
+        height: 450px;
+      }
+    }
+  }
+}
