@@ -5,6 +5,7 @@ import { readDocuments } from "./scripts/firebase/fireStore";
 import { useCategories } from "./state/CategoriesContext";
 
 import Home from "./pages/Home";
+import Menu from "./pages/Menu";
 import Admin from "./pages/Admin";
 import Modal from "./components/shared/Modal";
 
@@ -48,7 +49,7 @@ export default function App() {
         {status === "ready" && (
           <Routes>
             <Route path="/" element={<Home />} exact />
-            <Route path="/menu" element={<p>Menu</p>} />
+            <Route path="/menu" element={<Menu />} />
             <Route path="/menu/:categoryName" element={<p>Category</p>} />
             <Route
               path="/menu/:categoryName/:productId"
