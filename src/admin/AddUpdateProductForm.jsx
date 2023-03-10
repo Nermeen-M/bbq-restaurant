@@ -21,8 +21,11 @@ export default function AddUpdateProductForm({
   const { dispatch } = useProducts();
 
   const [title, setTitle] = useState("");
+  const [brief, setBrief] = useState("");
   const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
+  const [ingredients, setIngredients] = useState("");
   const [isUploading, setIsUploading] = useState(false);
 
   const collectionName = `categories/${categoryId}/products`;
@@ -30,8 +33,11 @@ export default function AddUpdateProductForm({
   useEffect(() => {
     if (formStatus === "edit") {
       setTitle(item.title);
+      setBrief(item.brief);
       setDescription(item.description);
+      setPrice(item.price);
       setImage(item.image);
+      setIngredients(item.ingredients);
     }
   }, []);
 
@@ -39,7 +45,10 @@ export default function AddUpdateProductForm({
 
   if (
     validateNotEmpty(title) &&
+    validateNotEmpty(brief) &&
     validateNotEmpty(description) &&
+    validateNotEmpty(price) &&
+    validateNotEmpty(ingredients) &&
     image.toString().length !== 0
   ) {
     formIsValid = true;
@@ -63,25 +72,27 @@ export default function AddUpdateProductForm({
     // console.log(image);
     const data = {
       title: title,
+      brief: brief,
       description: description,
+      price: price,
       image: image,
+      ingredients: ingredients,
     };
 
     event.preventDefault();
 
     if (formStatus === "add") {
-      const documentId = await createDocumentWithManualId(
-        collectionName,
-        manualId,
-        data
-      );
-      dispatch({ type: "create", payload: { id: documentId, ...data } });
+      await createDocumentWithManualId(collectionName, manualId, data);
+      dispatch({ type: "create", payload: { id: manualId, ...data } });
     } else if (formStatus === "edit") {
       const updatedItem = {
         ...item,
         title: title,
+        brief: brief,
         description: description,
+        price: price,
         image: image,
+        ingredients: ingredients,
       };
       // console.log(data);
       // console.log(updatedItem);
@@ -93,8 +104,11 @@ export default function AddUpdateProductForm({
     // descriptionReset();
     // imageReset();
     setTitle("");
+    setBrief("");
     setDescription("");
-    setImage({});
+    setPrice("");
+    setImage("");
+    setIngredients("");
 
     setModal(null);
   }
@@ -121,6 +135,18 @@ export default function AddUpdateProductForm({
           )} */}
         </div>
         <div className="form-field">
+          <label htmlFor="brief">Title</label>
+          <input
+            id="brief"
+            type="text"
+            value={brief}
+            onChange={(event) => setBrief(event.target.value)}
+            // onBlur={titleBlurHandler}
+            placeholder="Brief"
+            required
+          />
+        </div>
+        <div className="form-field">
           <label htmlFor="description">Description</label>
           <input
             id="description"
@@ -136,6 +162,18 @@ export default function AddUpdateProductForm({
           )} */}
         </div>
         <div className="form-field">
+          <label htmlFor="price">Price</label>
+          <input
+            id="price"
+            type="number"
+            value={price}
+            onChange={(event) => setPrice(event.target.value)}
+            // onBlur={titleBlurHandler}
+            placeholder="Price"
+            required
+          />
+        </div>
+        <div className="form-field">
           <label htmlFor="image">Image</label>
           {isUploading && <span>Uploading ...</span>}
           <input
@@ -146,14 +184,24 @@ export default function AddUpdateProductForm({
             // files={image}
             onChange={imageChangeHandler}
             // onBlur={imageBlurHandler}
-            placeholder="image"
-            required
           />
           {/* {formStatus === "edit" && <img width="50" src={item.image} />} */}
           <img width="50" src={image} />
           {/* {imageHasError && (
             <p className="error">Please enter a valid image.</p>
           )} */}
+        </div>
+        <div className="form-field">
+          <label htmlFor="ingredients">Ingredients</label>
+          <textarea
+            id="ingredients"
+            type="text"
+            value={ingredients}
+            onChange={(event) => setIngredients(event.target.value)}
+            // onBlur={titleBlurHandler}
+            placeholder="Ingredients"
+            required
+          />
         </div>
         <div className="actions">
           <button

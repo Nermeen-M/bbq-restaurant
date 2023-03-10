@@ -96,12 +96,8 @@ export default function AddUpdateCategoryForm({
     event.preventDefault();
 
     if (formStatus === "add") {
-      const documentId = await createDocumentWithManualId(
-        collectionName,
-        manualId,
-        data
-      );
-      dispatch({ type: "create", payload: { id: documentId, ...data } });
+      await createDocumentWithManualId(collectionName, manualId, data);
+      dispatch({ type: "create", payload: { id: manualId, ...data } });
     } else if (formStatus === "edit") {
       const updatedItem = {
         ...item,
@@ -120,7 +116,7 @@ export default function AddUpdateCategoryForm({
     // imageReset();
     setTitle("");
     setDescription("");
-    setImage({});
+    setImage("");
 
     setModal(null);
   }
@@ -172,8 +168,6 @@ export default function AddUpdateCategoryForm({
             // files={image}
             onChange={imageChangeHandler}
             // onBlur={imageBlurHandler}
-            placeholder="image"
-            required
           />
           {/* {formStatus === "edit" && <img width="50" src={item.image} />} */}
           <img width="50" src={image} />
