@@ -3,8 +3,10 @@
 @import "./base/variables.scss";
 @import "./base/layout.scss";
 @import "./base/typography.scss";
+@import "./base/animation.scss";
 
 /* Components */
 @import "./components/Modal.scss";
 @import "./components/Header.scss";
+@import "./pages/Home.scss";
 @import "./components/Footer.scss";

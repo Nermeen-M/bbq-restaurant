@@ -1,0 +1,43 @@
+#home {
+  .hero {
+    height: calc(100vh - 80px);
+    background: url("../../images/home-hero.jpg") no-repeat center;
+    background-size: cover;
+
+    position: relative;
+
+    .overlay {
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .text {
+        text-align: center;
+        width: 311px;
+        animation-delay: 0.5s;
+
+        h1 {
+          color: $color-white;
+          margin-bottom: $space-medium;
+        }
+
+        h2 {
+          color: $color-white;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .hero {
+    height: calc(100vh - 120px);
+    .text {
+      text-align: center;
+      width: 500px;
+    }
+  }
+}

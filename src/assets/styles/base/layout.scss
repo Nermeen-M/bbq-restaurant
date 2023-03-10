@@ -6,6 +6,25 @@ html {
   font-size: 16px;
 }
 
+.primary-button {
+  min-width: 150px;
+  padding: $space-medium;
+  height: 50px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  background-color: $color-red;
+  color: $color-white;
+  align-items: center;
+  margin: $space-x-large auto;
+  transition: $transition;
+
+  &:hover {
+    background-color: $color-maroon;
+  }
+}
+
 @media (min-width: $media-desktop) {
   html {
     font-size: 18px;

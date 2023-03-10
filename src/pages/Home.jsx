@@ -1,13 +1,27 @@
-import { Link } from "react-router-dom";
-import { useCategories } from "../state/CategoriesContext";
+import { useNavigate } from "react-router-dom";
 
 import CategoriesList from "../components/CategoriesList";
 
 export default function Home() {
+  const navigate = useNavigate();
+
   return (
-    <div id="home">
-      <div>Hero</div>
+    <main id="home">
+      <section className="hero">
+        <div className="overlay">
+          <div className="text">
+            <h1>Fire Grill</h1>
+            <h2>Where every flavor tells a story</h2>
+            <button
+              className="primary-button"
+              onClick={() => navigate("/menu")}
+            >
+              Discover our menu
+            </button>
+          </div>
+        </div>
+      </section>
       <CategoriesList />
-    </div>
+    </main>
   );
 }
