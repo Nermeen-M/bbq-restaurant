@@ -1,5 +1,6 @@
 import CategoriesList from "../components/CategoriesList";
 
+// good
 export default function Menu() {
   return (
     <main id="menu">

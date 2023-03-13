@@ -5,6 +5,7 @@ import { useCategories } from "../state/CategoriesContext";
 
 import { readDocument } from "../scripts/firebase/fireStore";
 
+// good
 export default function Product() {
   const { categoryName, productId } = useParams();
   const navigate = useNavigate();

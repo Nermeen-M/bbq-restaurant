@@ -8,6 +8,7 @@ import CategoryDetails from "../components/CategoryDetails";
 import ProductItem from "../components/ProductItem";
 import LoadingScreen from "../components/shared/LoadingScreen";
 
+// good
 export default function Category() {
   const params = useParams();
   const { categories } = useCategories();

@@ -9,6 +9,7 @@ export default function Admin({ setModal }) {
 
   return (
     <div id="admin">
+      {/* This tab interface can be a separate component -1 */}
       <div className="admin-nav">
         <button
           onClick={() => setIsCategoryActive(true)}

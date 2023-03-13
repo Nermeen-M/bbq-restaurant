@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 
+// good
 export default function NotFound() {
   const navigate = useNavigate();
   return (

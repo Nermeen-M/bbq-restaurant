@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+// too long (but i will teach how to improve it)
 export default function BookingForm() {
   const [enteredName, setEnteredName] = useState("");
   const [enteredEmail, setEnteredEmail] = useState("");

@@ -46,6 +46,7 @@ export default function App() {
     <div className="App">
       <Header />
       {status === "loading" && <LoadingScreen />}
+      {/* nesting -1 you could put this into a separate component, we saw it durign Project 3 */}
       {status === "ready" && (
         <Routes>
           <Route path="/" element={<Home />} exact />

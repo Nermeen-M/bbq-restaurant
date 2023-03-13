@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 import CategoriesList from "../components/CategoriesList";
 
+// good
 export default function Home() {
   const navigate = useNavigate();
 
@@ -21,6 +22,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      {/* Similar to the "phase" if the only funciton of this page is to load another page, then put everything in a single page -1 */}
       <section className="categories-list">
         <CategoriesList />
       </section>
